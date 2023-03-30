@@ -12,8 +12,7 @@
     @yield('vue-script')
     <title>causam</title>
 </head>
-<body>
-    @include('components.navbar')
+<body id="app">
     @yield('content')
 </body>
 </html>

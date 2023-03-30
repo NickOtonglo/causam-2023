@@ -153,6 +153,7 @@ a.btn:hover {
 }
 
 .form-control input[type='text'],
+.form-control input[type='password'],
 .form-control input[type='email'],
 .form-control textarea {
     border: 0;

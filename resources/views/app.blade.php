@@ -1,8 +1,8 @@
 @extends('master')
 
-@section('navmenu')
+{{-- @section('navmenu')
     @include('components.navmenu-articles')
-@endsection
+@endsection --}}
 
 @section('vue-script')
 <!-- Scripts -->
@@ -10,9 +10,5 @@
 @endsection
 
 @section('content')
-<section>
-    <div class="container" id="app">
-        <router-view></router-view>
-    </div>
-</section>
+<router-view></router-view>
 @endsection

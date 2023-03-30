@@ -1,12 +1,14 @@
 <template>
     <div class="container">
-        <router-link class="btn btn-primary btn-medium" :to="{ name: 'article.edit', params: { slug: article.slug } }">Update</router-link>
-        <button @click.prevent="deleteArticle(article.slug)" :disabled="isLoading" type="submit" class="btn-danger btn-medium">
-            <div v-show="isLoading" class="lds-dual-ring"></div>
-            <span v-if="isLoading">Processing...</span>
-            <span v-else>Delete article</span>
-        </button>
-        <br><br>
+        <template v-if="isLoggedIn">
+            <router-link class="btn btn-primary btn-medium" :to="{ name: 'article.edit', params: { slug: article.slug } }">Update</router-link>
+            <button @click.prevent="deleteArticle(article.slug)" :disabled="isLoading" type="submit" class="btn-danger btn-medium">
+                <div v-show="isLoading" class="lds-dual-ring"></div>
+                <span v-if="isLoading">Processing...</span>
+                <span v-else>Delete article</span>
+            </button>
+            <br><br>
+        </template>
         <h1>{{ article.title }}</h1>
         <img :src="'/storage/images/articles/'+ article.slug + '/' + article.thumbnail">
         <br>
@@ -98,6 +100,11 @@ export default {
                     this.isLoading = false
                 }
             })
+        }
+    },
+    computed: {
+        isLoggedIn() {
+            return !!window.localStorage.getItem('loggedIn')
         }
     }
 }

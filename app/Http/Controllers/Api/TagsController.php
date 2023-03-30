@@ -8,6 +8,7 @@ use App\Models\Tag;
 use App\Http\Resources\TagsResource;
 use App\Http\Resources\ArticlesResource;
 use App\Http\Requests\SaveTagRequest;
+use Illuminate\Support\Str;
 
 class TagsController extends Controller
 {
@@ -43,12 +44,13 @@ class TagsController extends Controller
         $tagsRequest = explode(',',$request->name);
         $tags = [];
 
-        foreach ($tagsRequest as $tag) {
-            array_push($tags,trim($tag));
+        foreach ($tagsRequest as $item) {
+            $tag = Str::slug(trim($item), '-');
+            array_push($tags,trim($item));
 
             if(!Tag::where('name',$tag)->exists()) {
                 Tag::create([
-                    'name' => trim($tag),
+                    'name' => $tag,
                 ]);
             }
         }
@@ -93,7 +95,8 @@ class TagsController extends Controller
     public function update(SaveTagRequest $request, $id)
     {
         $tagNew = Tag::where('id', $request->id)->first();
-        $tagNew->name = $request->name;
+        $tagNew->name = Str::slug(trim($request->name), '-');
+
         if(!Tag::where('name',$request->name)->exists()) {
             $tagNew->save();
         }

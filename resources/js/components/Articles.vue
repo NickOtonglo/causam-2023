@@ -1,5 +1,15 @@
 <template>
     <h2 class="section-title">Articles</h2>
+    <div>
+        <form action="">
+            <div class="search-grp">
+                <input type="text" name="search" id="search">
+                <span>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+            </div>
+        </form>
+    </div>
     <div class="cards-flex">
         <div>
             <div v-show="isLoading" class="lds-dual-ring"></div>

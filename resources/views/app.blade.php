@@ -6,6 +6,7 @@
 
 @section('vue-script')
 <!-- Scripts -->
+<script src="{{ mix('js/style.js') }}"></script>
 <script src="{{ mix('js/app.js') }}" defer></script>
 @endsection
 

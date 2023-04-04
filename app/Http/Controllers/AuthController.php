@@ -43,13 +43,22 @@ class AuthController extends Controller
         return response($response, 201);
     }
 
-    public function logout() {
+    public function logout(Request $request) {
         auth()->user()->tokens()->delete();
         auth()->guard('web')->logout();
 
-        return response()->json([
-            'message' => 'Logged out | Token destroyed',
-            'token' => 'null',
-        ]);
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        // return response()->json([
+        //     'message' => 'Logged out | Token destroyed',
+        //     'token' => 'null',
+        // ]);
+
+        if ($request->wantsJson()) {
+            return response()->noContent();
+        }
+
+        return redirect('/');
     }
 }

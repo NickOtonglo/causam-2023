@@ -270,3 +270,45 @@ span .tag {
     font-size: .9rem;
 }
 
+.search-grp {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    max-width: 700px;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+}
+
+.search-grp input {
+    padding: 8px;
+    width: 90%;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 1.1rem;
+}
+
+.search-grp span {
+    display: block;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    cursor: pointer;
+    transition: .2s color;
+}
+
+.search-grp span:hover {
+    color: var(--color-primary);
+}
+
+.search-grp span:active {
+    color: var(--color-dark);
+}
+
+.search-grp span i {
+    margin: 10px;
+}
+

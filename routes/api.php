@@ -27,6 +27,8 @@ Route::get('tags/{tag}', '\App\Http\Controllers\Api\TagsController@show');
 Route::get('articles/{article}/tags', '\App\Http\Controllers\Api\ArticlesController@getTags');
 Route::get('tags/{tag}/articles', '\App\Http\Controllers\Api\TagsController@getArticles');
 
+Route::get('check-auth', '\App\Http\Controllers\AuthController@checkAuth');
+
 Route::middleware(['auth:sanctum'])->group(function() {
     // Route::post('logout', '\App\Http\Controllers\AuthController@logout');
     Route::post('articles', '\App\Http\Controllers\Api\ArticlesController@store');

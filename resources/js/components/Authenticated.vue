@@ -14,13 +14,7 @@
                                     <span id="navMenuToggle">Hi, Administrator</span>
                                     <ul id="navMenu" class="navmenu-list">
                                         <li><a href="#">My account</a></li>
-                                        <li @click="logout" :disabled="isLoading">
-                                            <div v-show="isLoading" class="lds-dual-ring"></div>
-                                            <a href="#">
-                                                <template v-if="isLoading">Logging out...</template>
-                                                <template v-else>Logout</template>
-                                            </a>
-                                        </li>
+                                        <li><a href="#">Logout</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -41,62 +35,26 @@
 </template>
 
 <script>
-import { reactive, inject } from 'vue'
-import { useRouter } from 'vue-router'
-
 export default {
+    name: 'Articles',
     data() {
         return {
-            user: reactive({
-                name: '',
-                email: '',
-            }),
-            router: useRouter(),
+            articles: [],
             isLoading: false,
-            swal: inject('$swal'),
         }
     },
     mounted() {
-        this.getUser()
-        this.menuControl()
-    },
-    created() {
-        axios.interceptors.response.use(
-            response => {
-                return response
-            },
-            error => {
-                if (error.response.status === 401) {
-                    this.logout()
-                }
-
-                return Promise.reject(error)
-            }
-        )
+        this.getArticles()
     },
     methods: {
-        getUser() {
-            axios.get('/api/user')
-                .then(response => {
-                    this.user.name = response.data.name
-                    this.user.email = response.data.email
-                })
-                .catch(error => {
-                    if (error.response?.data) {
-                        this.swal({
-                            icon: 'error',
-                            title: error.response?.status,
-                            text: error.response?.statusText
-                        })
-                    }
-                })
-        },
-        logout() {
-            if (this.isLoading) return
+        getArticles() {
+            if(this.isLoading) {return}
             this.isLoading = true
 
-            axios.post('logout')
-                .then(response => this.router.push({ name: 'auth.login' }))
+            axios.get('/api/articles')
+            .then(response => this.articles = response.data.data)
+            .catch(error => console.log(error))
+            .finally(() => this.isLoading = false)
         },
         menuControl() {
             let navMenuToggle, navMenu, navMenuItem

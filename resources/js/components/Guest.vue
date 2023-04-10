@@ -14,13 +14,7 @@
                                     <span id="navMenuToggle">Hi, Administrator</span>
                                     <ul id="navMenu" class="navmenu-list">
                                         <li><a href="#">My account</a></li>
-                                        <li @click="logout" :disabled="isLoading">
-                                            <div v-show="isLoading" class="lds-dual-ring"></div>
-                                            <a href="#">
-                                                <template v-if="isLoading">Logging out...</template>
-                                                <template v-else>Logout</template>
-                                            </a>
-                                        </li>
+                                        <li><a href="#">Logout</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -28,7 +22,6 @@
                         <template v-else>
                             <li><router-link :to="{ name: 'articles'}" href="/articles">All articles</router-link></li>
                         </template>
-                        <!-- <li><router-link :to="{ name: 'articles'}" href="/articles">All articles</router-link></li> -->
                     </ul>
                 </nav>
             </div>
@@ -42,63 +35,12 @@
 </template>
 
 <script>
-import { reactive, inject } from 'vue'
-import { useRouter } from 'vue-router'
-
 export default {
-    data() {
-        return {
-            user: reactive({
-                name: '',
-                email: '',
-            }),
-            router: useRouter(),
-            isLoading: false,
-            swal: inject('$swal'),
-        }
-    },
     mounted(){
-        this.getUser()
+        console.log(this.isLoggedIn)
         this.menuControl()
     },
-    created() {
-        axios.interceptors.response.use(
-            response => {
-                return response
-            },
-            error => {
-                if (error.response.status === 401) {
-                    this.logout()
-                }
-
-                return Promise.reject(error)
-            }
-        )
-    },
     methods: {
-        getUser() {
-            axios.get('/api/user')
-                .then(response => {
-                    this.user.name = response.data.name
-                    this.user.email = response.data.email
-                })
-                .catch(error => {
-                    if (error.response?.data) {
-                        this.swal({
-                            icon: 'error',
-                            title: error.response?.status,
-                            text: error.response?.statusText
-                        })
-                    }
-                })
-        },
-        logout() {
-            if (this.isLoading) return
-            this.isLoading = true
-
-            axios.post('logout')
-                .then(response => this.router.push({ name: 'auth.login' }))
-        },
         menuControl() {
             let navMenuToggle, navMenu, navMenuItem
 

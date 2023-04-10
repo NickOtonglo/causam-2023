@@ -41,7 +41,7 @@ export default {
             }),
             authenticate: (response) => {
                 localStorage.setItem('loggedIn', JSON.stringify(true))
-                this.router.push({ name: 'articles.auth' })
+                this.router.push({ name: 'articles' })
             },
             router: useRouter(),
             isLoading: false,
@@ -49,42 +49,39 @@ export default {
             swal: inject('$swal'),
         }
     },
-    mounted() {
-        console.log(this.isLoggedIn)
-    },
+    // mounted() {
+    //     console.log(this.isLoggedIn)
+    // },
     methods: {
         submitLogin(credentials) {
             if (this.isLoading) {return}
             this.isLoading = true
             this.validationErrors = {}
 
-            axios.get('/sanctum/csrf-cookie').then(response => {
-                // Login...
-                axios.post('/login', credentials)
-                    .then(response => {
-                        this.authenticate(response)
-                    })
-                    .catch(error => {
-                        if (error.response?.data) {
-                            this.validationErrors = error.response.data.errors
-                        }
-                        if (error.response?.data.errors.credentials) {
-                            this.swal({
-                                icon: 'error',
-                                title: error.response.data.errors.credentials,
-                                text: error.response.data.message,
-                            })
-                        }
-                    })
-                    .finally(() => this.isLoading = false)
-            });
+            axios.post('/login', credentials)
+                .then(response => {
+                    this.authenticate(response)
+                })
+                .catch(error => {
+                    if (error.response?.data) {
+                        this.validationErrors = error.response.data.errors
+                    }
+                    if (error.response?.data.errors.credentials) {
+                        this.swal({
+                            icon: 'error',
+                            title: error.response.data.errors.credentials,
+                            text: error.response.data.message,
+                        })
+                    }
+                })
+                .finally(() => this.isLoading = false)
         },
     },
-    computed: {
-        isLoggedIn() {
-            return !!window.localStorage.getItem('loggedIn')
-        }
-    }
+    // computed: {
+    //     isLoggedIn() {
+    //         return !!window.localStorage.getItem('loggedIn')
+    //     }
+    // }
 }
 </script>
 

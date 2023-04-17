@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -37,7 +38,7 @@ class AuthController extends Controller
         ];
 
         if ($request->wantsJson()) {
-            return response()->json($request->user());
+            return response()->json($response);
         }
 
         return response($response, 201);
@@ -60,5 +61,13 @@ class AuthController extends Controller
         }
 
         return redirect('/');
+    }
+
+    public function checkAuth() {
+        // if(Auth::check()) {
+        //     return 'authenticated';
+        // }
+        // return 'not authenticated';
+        return Auth::user()->currentAccessToken()->token;
     }
 }

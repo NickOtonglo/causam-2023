@@ -11,13 +11,24 @@ window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.axios.defaults.withCredentials = true
 
+window.axios.interceptors.request.use(
+    config => {
+        let token = localStorage.getItem('authToken')
+        if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`
+        }
+
+        return config
+    }
+)
+
 window.axios.interceptors.response.use(
     response => response,
     error => {
         if (error.response?.status === 401 || error.response?.status === 419) {
             if (JSON.parse(localStorage.getItem('loggedIn'))) {
-                localStorage.setItem('loggedIn', false)
-                // location.assign('/login')
+                localStorage.removeItem('loggedIn')
+                localStorage.removeItem('authToken')
             }
             location.assign('/login')
         }

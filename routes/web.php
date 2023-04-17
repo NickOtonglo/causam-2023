@@ -16,6 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', '\App\Http\Controllers\AuthController@login');
 Route::post('logout', '\App\Http\Controllers\AuthController@logout')->middleware(['auth:sanctum']);
 
+Route::get('/cache/clear', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+
+    return "Cache cleared!";
+ });
+
 Route::view('/', 'index');
 // Route::view('/articles', 'app');
 Route::view('/{any?}', 'app')

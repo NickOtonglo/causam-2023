@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Articles from '../components/Articles'
+import ArticlesAuth from '../components/Articles'
 import ArticleCreate from '../components/Article/Create'
 import ArticleView from '../components/Article/View'
 import ArticleEdit from '../components/Article/Edit'
@@ -19,10 +20,18 @@ function auth(to, from, next) {
     else next('/login')
 }
 
+function checkLoginGuest(to, from, next) {
+    if (JSON.parse(localStorage.getItem('loggedIn'))) {
+        next('/articles')
+    }
+
+    else next()
+}
+
 const routes = [
     {
-        // path: '/',
-        // redirect: { name: 'login' },
+        path: '/',
+        redirect: { name: 'login' },
         component: GuestLayout,
         children: [
             {
@@ -53,6 +62,7 @@ const routes = [
                 path: '/login',
                 name: 'auth.login',
                 component: Login,
+                beforeEnter: checkLoginGuest,
                 meta: {
                     name: 'Login'
                 }
@@ -63,6 +73,14 @@ const routes = [
         component: AuthenticatedLayout,
         beforeEnter: auth,
         children: [
+            {
+                path: '/articles',
+                name: 'articles.auth',
+                component: ArticlesAuth,
+                meta: {
+                    name: 'Articles'
+                }
+            },
             {
                 path: '/articles/new',
                 name: 'article.create',

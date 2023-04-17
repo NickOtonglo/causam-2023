@@ -1,10 +1,20 @@
 <template>
     <h2 class="section-title">Articles</h2>
+    <div>
+        <form action="">
+            <div class="search-grp">
+                <input type="text" name="search" id="search">
+                <span>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+            </div>
+        </form>
+    </div>
+    <div id="isLoading">
+        <div v-show="isLoading" class="lds-dual-ring"></div>
+        <span v-if="isLoading">Loading...</span>
+    </div>
     <div class="cards-flex">
-        <div>
-            <div v-show="isLoading" class="lds-dual-ring"></div>
-            <span v-if="isLoading">Loading...</span>
-        </div>
         <div v-for="article in articles" class="card card-img-bg-txt card-clickable">
             <router-link :to="{ name: 'article.view', params: { slug: article.slug } }">
                 <div class="img" :style="{ backgroundImage: `url(/storage/images/articles/${article.slug}/${article.thumbnail})` }"></div>
@@ -14,10 +24,10 @@
                 </div>
             </router-link>
         </div>
-        <template v-if="!articles.length">
-            <p>-no articles-</p>
-        </template>
     </div>
+    <template v-if="!articles.length">
+        <p style="text-align: center;">-no articles-</p>
+    </template>
 </template>
 
 <script>
@@ -50,5 +60,10 @@ export default {
 .lds-dual-ring:after {
     border: 4px solid var(--color-primary);
     border-color: var(--color-primary) transparent var(--color-primary) transparent;
+}
+
+#isLoading {
+    display: flex;
+    justify-content: center;
 }
 </style>

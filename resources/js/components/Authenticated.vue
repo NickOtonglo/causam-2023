@@ -15,7 +15,6 @@
                                     <ul id="navMenu" class="navmenu-list">
                                         <li><a href="#">My account</a></li>
                                         <li @click="logout" :disabled="isLoading">
-                                            <div v-show="isLoading" class="lds-dual-ring"></div>
                                             <a href="#">
                                                 <template v-if="isLoading">Logging out...</template>
                                                 <template v-else>Logout</template>
@@ -97,13 +96,15 @@ export default {
             if (this.isLoading) return
             this.isLoading = true
 
-            axios.post('logout')
+            axios.post('/logout')
                 .then(response => {
-                    // localStorage.removeItem('loggedIn')
-                    // localStorage.removeItem('authToken')
-                    this.router.push({ name: 'auth.login' })
+                    localStorage.removeItem('loggedIn')
+                    localStorage.removeItem('authToken')
+                    localStorage.removeItem('user')
+
                 })
                 .catch(error => console.log(error.response))
+                .finally(this.router.push({ name: 'auth.login' }))
         },
         menuControl() {
             let navMenuToggle, navMenu, navMenuItem

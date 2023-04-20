@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Route::apiResource('articles', \App\Http\Controllers\Api\ArticlesController::class);
 Route::get('articles', '\App\Http\Controllers\Api\ArticlesController@index');
 Route::get('articles/{article}', '\App\Http\Controllers\Api\ArticlesController@show');
+Route::get('articles/{article}/author', '\App\Http\Controllers\Api\ArticlesController@getAuthorName');
 
 // Route::apiResource('tags', \App\Http\Controllers\Api\TagsController::class);
 Route::get('tags/{tag}', '\App\Http\Controllers\Api\TagsController@show');

@@ -64,6 +64,7 @@ class ArticlesController extends Controller
             $data->preview = substr($request->preview, 0, 150);
             $data->content = $request->content;
             $data->thumbnail = $fileName;
+            $data->user_id = auth()->user()->id;
 
             try{
                 $data->slug = $slug;
@@ -188,5 +189,15 @@ class ArticlesController extends Controller
 
     public function unlinkTag(Article $article) {
         $article->tags()->detach();
+    }
+
+    public function getAuthorName(Article $article) {
+        $author = $article->user;
+        return response()->json([
+            'author' => [
+                'name' => $author->name,
+                'id' => $author->id,
+            ]
+        ]);
     }
 }

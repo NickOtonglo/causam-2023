@@ -19,7 +19,7 @@ window.axios.interceptors.request.use(
         }
 
         return config
-    }
+    },
 )
 
 window.axios.interceptors.response.use(
@@ -29,6 +29,7 @@ window.axios.interceptors.response.use(
             if (JSON.parse(localStorage.getItem('loggedIn'))) {
                 localStorage.removeItem('loggedIn')
                 localStorage.removeItem('authToken')
+                localStorage.removeItem('user')
             }
             location.assign('/login')
         }

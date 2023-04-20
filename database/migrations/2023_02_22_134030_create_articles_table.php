@@ -20,6 +20,7 @@ class CreateArticlesTable extends Migration
             $table->string('preview');
             $table->longText('content');
             $table->string('thumbnail');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

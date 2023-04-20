@@ -1,32 +1,31 @@
 <template>
-    <div class="container">
-        <template v-if="isLoggedIn">
-            <router-link class="btn btn-primary btn-medium" :to="{ name: 'article.edit', params: { slug: article.slug } }">Update</router-link>
-            <button @click.prevent="deleteArticle(article.slug)" :disabled="isLoading" type="submit" class="btn-danger btn-medium">
-                <div v-show="isLoading" class="lds-dual-ring"></div>
-                <span v-if="isLoading">Processing...</span>
-                <span v-else>Delete article</span>
-            </button>
-            <br><br>
+    <template v-if="isAuthor()">
+        <router-link class="btn btn-primary btn-medium"
+            :to="{ name: 'article.edit', params: { slug: article.slug } }">Update</router-link>
+        <button @click.prevent="deleteArticle(article.slug)" :disabled="isLoading" type="submit"
+            class="btn-danger btn-medium">
+            <div v-show="isLoading" class="lds-dual-ring"></div>
+            <span v-if="isLoading">Processing...</span>
+            <span v-else>Delete article</span>
+        </button>
+        <br><br>
+    </template>
+    <h1>{{ article.title }}</h1>
+    <img :src="'/storage/images/articles/' + article.slug + '/' + article.thumbnail">
+    <br>
+    <h3>by {{ article.author.name }}</h3>
+    <p>Published on: {{ article.timestamp }}</p>
+    <p>Tags:
+        <template v-for="tag in tags">
+            <span>
+                <router-link :to="{ name: 'tag.articles', params: { name: tag.name } }" class="tag">{{ tag.name }}
+                </router-link>
+            </span>
         </template>
-        <h1>{{ article.title }}</h1>
-        <img :src="'/storage/images/articles/'+ article.slug + '/' + article.thumbnail">
-        <br>
-        <h3>by {Author}</h3>
-        <p>Tags:
-            <template v-for="tag in tags">
-                <span>
-                    <router-link
-                        :to="{ name: 'tag.articles', params: { name: tag.name } }"
-                        class="tag">{{ tag.name }}
-                    </router-link>
-                </span>
-            </template>
-        </p>
-        <hr>
-        <br>
-        <div id="content" v-html="article.content"></div>
-    </div>
+    </p>
+    <hr>
+    <br>
+    <div id="content" v-html="article.content"></div>
 </template>
 
 <script>
@@ -42,6 +41,8 @@ export default {
                 slug: this.$route.params.slug,
                 thumbnail: '',
                 content: '',
+                timestamp: '',
+                author: {},
             },
             route: useRoute(),
             router: useRouter(),
@@ -50,9 +51,10 @@ export default {
             tags: {},
         }
     },
-    mounted() {
+    created() {
         this.getArticle(this.$route.params.slug)
         this.getTags(this.$route.params.slug)
+        this.getAuthor(this.$route.params.slug)
     },
     methods: {
         getTags(slug) {
@@ -64,6 +66,16 @@ export default {
             axios.get('/api/articles/'+slug)
                 .then(response => this.article = response.data.data)
                 .catch(error => console.log(error))
+        },
+        getAuthor(slug) {
+            axios.get('/api/articles/'+slug+'/author')
+                .then(response => {
+                    this.article.author = response.data.author
+                })
+                .catch(error => {
+                    console.log(error)
+                    this.article.author = 'Loading...'
+                })
         },
         deleteArticle(slug) {
             if(this.isLoading) {return}
@@ -100,12 +112,20 @@ export default {
                     this.isLoading = false
                 }
             })
+        },
+        isAuthor() {
+            if(this.isLoggedIn && this.article.author.id == localStorage.getItem('user')) {
+                // console.log('isAuthor() true')
+                return true
+            } else
+            // console.log('isAuthor() false')
+            return false
         }
     },
     computed: {
         isLoggedIn() {
             return !!window.localStorage.getItem('loggedIn')
-        }
+        },
     }
 }
 </script>

@@ -42,6 +42,7 @@ export default {
             authenticate: (response) => {
                 localStorage.setItem('loggedIn', JSON.stringify(true))
                 localStorage.setItem('authToken', response.data.token)
+                localStorage.setItem('user', response.data.user.id)
                 this.router.push({ name: 'articles.auth' })
             },
             router: useRouter(),

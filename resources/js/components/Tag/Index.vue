@@ -40,6 +40,9 @@
                 <td><a id="linkDelete" href="#" @click.prevent="deleteTag(tag.name)">Delete</a></td>
             </tr>
         </table>
+        <template v-if="!tagsList.length">
+            <p style="text-align: center;">-no tags-</p>
+        </template>
     </div>
 </template>
 

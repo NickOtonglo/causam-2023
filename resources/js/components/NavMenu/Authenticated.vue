@@ -1,43 +1,21 @@
 <template>
-    <div class="navbar">
-        <div class="nav-wrapper">
-            <div class="container">
-                <h1><a href="/">causam</a></h1>
-                <nav>
-                    <ul>
-                        <template v-if="isLoggedIn">
-                            <li><router-link :to="{ name: 'articles'}" href="/articles">All articles</router-link></li>
-                            <li><router-link :to="{ name: 'article.create'}" href="/articles/new">New article</router-link></li>
-                            <li><router-link :to="{ name: 'tags'}" href="/tags">Tags</router-link></li>
-                            <li>
-                                <div class="navmenu">
-                                    <span id="navMenuToggle">Hi, {{ user.name }}</span>
-                                    <ul id="navMenu" class="navmenu-list">
-                                        <li><a href="#">My account</a></li>
-                                        <li @click="logout" :disabled="isLoading">
-                                            <a href="#">
-                                                <template v-if="isLoading">Logging out...</template>
-                                                <template v-else>Logout</template>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </template>
-                        <template v-else>
-                            <li><router-link :to="{ name: 'articles'}" href="/articles">All articles</router-link></li>
-                        </template>
-                        <!-- <li><router-link :to="{ name: 'articles'}" href="/articles">All articles</router-link></li> -->
-                    </ul>
-                </nav>
-            </div>
+    <li><router-link :to="{ name: 'articles'}" href="/articles">All articles</router-link></li>
+    <li><router-link :to="{ name: 'article.create'}" href="/articles/new">New article</router-link></li>
+    <li><router-link :to="{ name: 'tags'}" href="/tags">Tags</router-link></li>
+    <li>
+        <div class="navmenu">
+            <span id="navMenuToggle">Hi, {{ user.name }}</span>
+            <ul id="navMenu" class="navmenu-list">
+                <li><a href="#">My account</a></li>
+                <li @click="logout" :disabled="isLoading">
+                    <a href="#">
+                        <template v-if="isLoading">Logging out...</template>
+                        <template v-else>Logout</template>
+                    </a>
+                </li>
+            </ul>
         </div>
-    </div>
-    <section>
-        <div class="container">
-            <router-view></router-view>
-        </div>
-    </section>
+    </li>
 </template>
 
 <script>
@@ -45,6 +23,7 @@ import { reactive, inject } from 'vue'
 import { useRouter } from 'vue-router'
 
 export default {
+    name: 'Authenticated',
     data() {
         return {
             user: reactive({
@@ -56,25 +35,9 @@ export default {
             swal: inject('$swal'),
         }
     },
-    mounted(){
-        if (this.isLoggedIn) {
-            this.getUser()
-        }
+    mounted() {
+        this.getUser()
         this.menuControl()
-    },
-    created() {
-        // axios.interceptors.response.use(
-        //     response => {
-        //         return response
-        //     },
-        //     error => {
-        //         if (error.response.status === 401 || error.response.status === 419) {
-        //             this.logout()
-        //         }
-
-        //         return Promise.reject(error)
-        //     }
-        // )
     },
     methods: {
         getUser() {
@@ -94,6 +57,7 @@ export default {
                 })
         },
         logout() {
+            // console.log('logout() - auth')
             if (this.isLoading) return
             this.isLoading = true
 
@@ -102,10 +66,10 @@ export default {
                     localStorage.removeItem('loggedIn')
                     localStorage.removeItem('authToken')
                     localStorage.removeItem('user')
-
+                    this.$router.go()
                 })
                 .catch(error => console.log(error.response))
-                .finally(this.router.push({ name: 'auth.login' }))
+                // .finally(this.router.push({ name: 'auth.login' }))
         },
         menuControl() {
             let navMenuToggle, navMenu, navMenuItem
@@ -149,3 +113,10 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.lds-dual-ring:after {
+    border: 4px solid var(--color-primary);
+    border-color: var(--color-primary) transparent var(--color-primary) transparent;
+}
+</style>

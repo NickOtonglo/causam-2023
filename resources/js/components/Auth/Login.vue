@@ -43,7 +43,8 @@ export default {
                 localStorage.setItem('loggedIn', JSON.stringify(true))
                 localStorage.setItem('authToken', response.data.token)
                 localStorage.setItem('user', response.data.user.id)
-                this.router.push({ name: 'articles.auth' })
+                // this.router.push({ name: 'articles.auth' })
+                this.$router.go()
             },
             router: useRouter(),
             isLoading: false,

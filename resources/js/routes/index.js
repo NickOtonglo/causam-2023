@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import App from '../components/App'
 import Articles from '../components/Articles'
 import ArticlesAuth from '../components/Articles'
 import ArticleCreate from '../components/Article/Create'
@@ -8,8 +9,8 @@ import Tags from '../components/Tag/Index'
 import TagEdit from '../components/Tag/Edit'
 import TagArticles from '../components/Tag/Articles'
 import Login from '../components/Auth/Login'
-import AuthenticatedLayout from '../components/Authenticated'
-import GuestLayout from '../components/Guest'
+import AuthenticatedLayout from '../components/NavMenu/Authenticated'
+import GuestLayout from '../components/NavMenu/Guest'
 
 function auth(to, from, next) {
     if (JSON.parse(localStorage.getItem('loggedIn'))) {
@@ -32,7 +33,7 @@ const routes = [
     {
         path: '/',
         redirect: { name: 'login' },
-        component: GuestLayout,
+        component: App,
         children: [
             {
                 path: '/articles',
@@ -70,7 +71,7 @@ const routes = [
         ]
     },
     {
-        component: AuthenticatedLayout,
+        component: App,
         beforeEnter: auth,
         children: [
             {

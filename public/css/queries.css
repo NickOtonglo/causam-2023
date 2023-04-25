@@ -1,3 +1,9 @@
+/* @media(min-width: 1099px) {
+    .navbar ul .navmenu .navmenu-list {
+        right: 10%;
+    }
+} */
+
 @media(max-width: 1099px) {
     .cards-flex {
         justify-content: center;

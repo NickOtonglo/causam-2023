@@ -28,14 +28,20 @@
     <template v-if="!articles.length">
         <p style="text-align: center;">-no articles-</p>
     </template>
+    <TailwindPagination :data="articles" @pagination-change-page="page => getArticles(page)" />
 </template>
 
 <script>
+import {TailwindPagination} from 'laravel-vue-pagination'
+
 export default {
     name: 'Articles',
+    components: {
+        'TailwindPagination': TailwindPagination,
+    },
     data() {
         return {
-            articles: [],
+            articles: {},
             isLoading: false,
         }
     },
@@ -43,12 +49,14 @@ export default {
         this.getArticles()
     },
     methods: {
-        getArticles() {
+        getArticles(page = 1) {
             if(this.isLoading) {return}
             this.isLoading = true
 
-            axios.get('/api/articles')
-            .then(response => this.articles = response.data.data)
+            axios.get('/api/articles?page=' + page)
+            .then(response => {
+                this.articles = response.data.data
+            })
             .catch(error => console.log(error))
             .finally(() => this.isLoading = false)
         }
@@ -65,5 +73,18 @@ export default {
 #isLoading {
     display: flex;
     justify-content: center;
+}
+
+.result {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-weight: 300;
+    width: 400px;
+    padding: 10px;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    background: #eceef0;
+    border-radius: 10px;
 }
 </style>

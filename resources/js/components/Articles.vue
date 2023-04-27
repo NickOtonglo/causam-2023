@@ -28,12 +28,9 @@
     <template v-if="!articles.length">
         <p style="text-align: center;">-no articles-</p>
     </template>
-    <TailwindPagination :data="articles" @pagination-change-page="page => getArticles(page)" />
 </template>
 
 <script>
-import {TailwindPagination} from 'laravel-vue-pagination'
-
 export default {
     name: 'Articles',
     components: {

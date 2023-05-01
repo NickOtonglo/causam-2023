@@ -312,3 +312,28 @@ span .tag {
     margin: 10px;
 }
 
+.pagination {
+    display: flex;
+    margin: 15px auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination li button {
+    box-shadow: 0 0 3px rgba(0, 0, 0, .2);
+    padding: 8px 14px;
+    margin: 8px 0;
+    cursor: pointer;
+}
+
+.pagination li button:hover {
+    background-color: rgba(107, 185, 201, 0.2);
+    text-shadow: unset;
+}
+
+.pagination li button.active {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    border: 2px solid var(--color-text-light);
+}
+

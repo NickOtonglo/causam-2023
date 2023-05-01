@@ -6,6 +6,7 @@ import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
+import Pagination from './components/Layouts/Pagination'
 
 const globalOptions = {
     // debug: 'info',
@@ -20,5 +21,6 @@ const app = createApp({})
 app.use(router)
 QuillEditor.props.globalOptions.default = () => globalOptions
 app.component('QuillEditor', QuillEditor)
+    .component('Pagination', Pagination)
 app.use(VueSweetalert2)
 app.mount('#app')

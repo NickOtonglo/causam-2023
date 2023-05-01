@@ -1,5 +1,5 @@
 <template>
-    <h2 class="section-title">Articles</h2>
+    <h2 class="section-title" @click="getCurrentPage">Articles</h2>
     <div>
         <form action="">
             <div class="search-grp">
@@ -28,25 +28,45 @@
     <template v-if="!articles.length">
         <p style="text-align: center;">-no articles-</p>
     </template>
+    <Pagination :totalPages="total_pages"
+                :perPage="per_page"
+                :currentPage="current_page"
+                @pagechanged="onPageChange"
+    />
 </template>
 
 <script>
 export default {
     name: 'Articles',
-    components: {
-        'TailwindPagination': TailwindPagination,
-    },
     data() {
         return {
             articles: {},
             isLoading: false,
+            total_pages: 0,
+            per_page: 0,
+            current_page: 1,
         }
     },
+    created() {
+        // this.getPaginationData(this.current_page)
+    },
     mounted() {
-        this.getArticles()
+        this.getPaginationData(this.current_page)
+        // this.getArticles(this.current_page)
     },
     methods: {
-        getArticles(page = 1) {
+        getPaginationData(page) {
+            axios.get('/api/articles?page=' + page)
+                .then(response => {
+                    this.total_pages = response.data.meta.last_page
+                    this.per_page = response.data.meta.per_page
+                    this.current_page = response.data.meta.current_page
+                })
+                .finally(() => {
+                    this.getArticles(this.current_page)
+                })
+        },
+        getArticles(page) {
             if(this.isLoading) {return}
             this.isLoading = true
 
@@ -56,6 +76,10 @@ export default {
             })
             .catch(error => console.log(error))
             .finally(() => this.isLoading = false)
+        },
+        onPageChange(page) {
+            this.current_page = page
+            this.getArticles(page)
         }
     }
 }

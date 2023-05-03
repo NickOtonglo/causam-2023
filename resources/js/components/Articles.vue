@@ -1,10 +1,10 @@
 <template>
-    <h2 class="section-title" @click="getCurrentPage">Articles</h2>
+    <h2 class="section-title">Articles</h2>
     <div>
-        <form action="">
+        <form @submit.prevent="getPaginationData(1)">
             <div class="search-grp">
-                <input type="text" name="search" id="search">
-                <span>
+                <input v-model="search_global" type="text" name="search" id="search" placeholder="search...">
+                <span @click="getPaginationData(1)">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </span>
             </div>
@@ -45,6 +45,7 @@ export default {
             total_pages: 0,
             per_page: 0,
             current_page: 1,
+            search_global: '',
         }
     },
     created() {
@@ -56,6 +57,9 @@ export default {
     },
     methods: {
         getPaginationData(page) {
+            if(this.isLoading) {return}
+            this.isLoading = true
+
             axios.get('/api/articles?page=' + page)
                 .then(response => {
                     this.total_pages = response.data.meta.last_page
@@ -63,14 +67,16 @@ export default {
                     this.current_page = response.data.meta.current_page
                 })
                 .finally(() => {
-                    this.getArticles(this.current_page)
+                    this.isLoading = false
+                    this.getArticles(page, this.search_global)
                 })
         },
-        getArticles(page) {
+        getArticles(page, search_global) {
             if(this.isLoading) {return}
             this.isLoading = true
 
-            axios.get('/api/articles?page=' + page)
+            axios.get('/api/articles?page=' + page +
+                      '&search_global=' + search_global)
             .then(response => {
                 this.articles = response.data.data
             })
@@ -79,9 +85,15 @@ export default {
         },
         onPageChange(page) {
             this.current_page = page
-            this.getArticles(page)
+            this.getPaginationData(page)
         }
-    }
+    },
+    watch: {
+        search_global(current, previous) {
+            // To show instant results while searching, uncomment the line below
+            // this.getPaginationData(1)
+        },
+    },
 }
 </script>
 

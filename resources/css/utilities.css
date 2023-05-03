@@ -282,6 +282,7 @@ span .tag {
 
 .search-grp input {
     padding: 8px;
+    padding-left: 16px;
     width: 90%;
     border: none;
     outline: none;
@@ -317,12 +318,15 @@ span .tag {
     margin: 15px auto;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .pagination li button {
-    box-shadow: 0 0 3px rgba(0, 0, 0, .2);
+    box-shadow: 0 0 1px rgba(0, 0, 0, .2);
+    border-radius: 2px;
     padding: 8px 14px;
-    margin: 8px 0;
+    margin: 8px 1px;
+    min-width: 40px;
     cursor: pointer;
 }
 
@@ -332,7 +336,13 @@ span .tag {
 }
 
 .pagination li button.active {
-    background-color: var(--color-primary);
+    background-color: #333;
     color: var(--color-text-light);
-    border: 2px solid var(--color-text-light);
+    border: 1px solid #333;
+    cursor: default;
+    /* padding: 10px 16px; */
+}
+
+.pagination li button.active:hover {
+    opacity: unset;
 }

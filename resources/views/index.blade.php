@@ -220,6 +220,9 @@
                     <div class="form-control">
                         <textarea type="text" name="message" placeholder="Message" rows="4" required></textarea>
                     </div>
+                    <div class="form-control">
+                        <input class="btn-primary btn-medium" type="submit" value="Submit">
+                    </div>
                 </form>
                 <div class="physical">
                     <p>Greenhouse Mall, along Ngong Road,</p>

@@ -1,5 +1,14 @@
 @extends('master')
 
+@if($flash = session('success'))
+<div class="alert-message success">
+    <div class="container">
+        <span><i class="fa-solid fa-check"></i></span>
+        <span>{{ $flash }}</span>
+    </div>
+</div>
+@endif
+
 <div class="navbar">
     <div class="container">
         <h1><a href="/">causam</a></h1>
@@ -210,16 +219,25 @@
         <div class="about-grp grid-40-60">
             <div class="card card-form">
                 <h2>Get in touch</h2>
-                <form action="">
+                <form action="/" method="POST">
+                    @csrf
                     <div class="form-control">
-                        <input type="text" name="name" placeholder="Name" required>
+                        <input type="text" name="sender_name" placeholder="Name" required>
                     </div>
                     <div class="form-control">
-                        <input type="email" name="email" placeholder="Email address" required>
+                        <input type="email" name="sender_email" placeholder="Email address" required>
                     </div>
                     <div class="form-control">
                         <textarea type="text" name="message" placeholder="Message" rows="4" required></textarea>
                     </div>
+                    @if(session('success'))
+                    <div class="alert-message success">
+                        <div class="container">
+                            <span><i class="fa-solid fa-check"></i></span>
+                            <span>{{ session('success') }}</span>
+                        </div>
+                    </div>
+                    @endif
                     <div class="form-control">
                         <input class="btn-primary btn-medium" type="submit" value="Submit">
                     </div>

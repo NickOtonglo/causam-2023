@@ -346,3 +346,23 @@ span .tag {
 .pagination li button.active:hover {
     opacity: unset;
 }
+
+.alert-message {
+    padding: 20px;
+}
+
+.alert-message span:nth-child(2) {
+    margin-left: 10px;
+}
+
+.alert-message.success {
+    background-color: rgba(22, 250, 14, 0.3);
+    border-left: 3px solid rgba(39, 148, 39, 0.6);
+    color: rgba(39, 148, 39, 1);
+}
+
+.alert-message.error {
+    background-color: rgba(250, 14, 14, 0.3);
+    border-left: 3px solid rgba(148, 39, 39, 0.6);
+    color: rgba(148, 39, 39, 1);
+}

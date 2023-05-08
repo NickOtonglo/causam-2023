@@ -19,7 +19,7 @@ class CreateMailsTable extends Migration
             $table->string('sender_email');
             $table->string('subject')->default('Contact Form');
             $table->longText('message');
-            $table->string('sent')->default('false');
+            // $table->string('sent')->default('false');
             $table->timestamps();
         });
     }

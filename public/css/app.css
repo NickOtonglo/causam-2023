@@ -39,8 +39,7 @@ router-link:hover {
 }
 
 button,
-.btn,
-input[type='submit'] {
+.btn {
     border-radius: 30px;
     cursor: pointer;
     font-family: inherit;
@@ -49,8 +48,7 @@ input[type='submit'] {
 }
 
 button:hover,
-.btn:hover,
-input[type='submit']:hover {
+.btn:hover {
     opacity: .8;
 }
 

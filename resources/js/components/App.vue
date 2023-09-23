@@ -54,7 +54,7 @@ export default {
         // )
     },
     mounted() {
-        console.log('isLoggedIn:' + this.isLoggedIn)
+        // console.log('isLoggedIn:' + this.isLoggedIn)
     },
     computed: {
         isLoggedIn() {

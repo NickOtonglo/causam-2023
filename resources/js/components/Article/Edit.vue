@@ -129,7 +129,7 @@ export default {
             }
             serialisedPost.append('tags', tagsFinal)
 
-            serialisedPost.append('method', '_PUT')
+            serialisedPost.append('_method', 'PATCH')
 
             /**
              * Why axios.put() doesn't work (route originally '/api/articles/'+ article.slug):

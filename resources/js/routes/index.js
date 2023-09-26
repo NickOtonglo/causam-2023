@@ -9,6 +9,7 @@ import Tags from '../components/Tag/Index'
 import TagEdit from '../components/Tag/Edit'
 import TagArticles from '../components/Tag/Articles'
 import Login from '../components/Auth/Login'
+import UserAccount from '../components/User/Account'
 import AuthenticatedLayout from '../components/NavMenu/Authenticated'
 import GuestLayout from '../components/NavMenu/Guest'
 
@@ -112,6 +113,14 @@ const routes = [
                 component: TagEdit,
                 meta: {
                     name: 'Update Tag'
+                }
+            },
+            {
+                path: '/account',
+                name: 'user.account',
+                component: UserAccount,
+                meta: {
+                    name: 'Account'
                 }
             },
         ]

@@ -9,6 +9,7 @@ window._ = require('lodash');
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+// window.axios.defaults.headers.common['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
 window.axios.defaults.withCredentials = true
 
 window.axios.interceptors.request.use(
@@ -32,6 +33,7 @@ window.axios.interceptors.response.use(
                 localStorage.removeItem('user')
             }
             location.assign('/login')
+            // console.log(error.response)
         }
 
         return Promise.reject(error)

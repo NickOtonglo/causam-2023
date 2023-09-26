@@ -138,6 +138,7 @@ a.btn:hover {
     height: 260px;
     width: 260px;
     border-radius: 50%;
+    background-size: cover !important;
 }
 
 .card-img-circle-text h3 {

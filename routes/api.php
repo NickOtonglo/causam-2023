@@ -40,4 +40,6 @@ Route::middleware(['auth:sanctum'])->group(function() {
     Route::post('tags', '\App\Http\Controllers\Api\TagsController@store');
     Route::patch('tags/{tag}', '\App\Http\Controllers\Api\TagsController@update');
     Route::delete('tags/{tag}', '\App\Http\Controllers\Api\TagsController@destroy');
+
+    Route::post('account/secret', '\App\Http\Controllers\Api\UserController@updatePassword');
 });

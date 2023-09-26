@@ -6,7 +6,7 @@
         <div class="navmenu">
             <span id="navMenuToggle">Hi, {{ user.name }}</span>
             <ul id="navMenu" class="navmenu-list">
-                <li><a href="#">My account</a></li>
+                <li><router-link :to="{name: 'user.account'}">My account</router-link></li>
                 <li @click="logout" :disabled="isLoading">
                     <a href="#">
                         <template v-if="isLoading">Logging out...</template>

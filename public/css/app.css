@@ -34,12 +34,14 @@ a {
 
 a:hover,
 button:hover,
-router-link:hover {
+router-link:hover,
+.form-control input[type='submit']:hover {
     text-shadow: .5px 0 1px;
 }
 
 button,
-.btn {
+.btn,
+.form-control input[type='submit'] {
     border-radius: 30px;
     cursor: pointer;
     font-family: inherit;
@@ -48,7 +50,8 @@ button,
 }
 
 button:hover,
-.btn:hover {
+.btn:hover,
+.form-control input[type='submit']:hover {
     opacity: .8;
 }
 
@@ -341,6 +344,11 @@ footer {
     background-color: var(--color-dark);
     color: var(--color-primary);
     padding: 20px;
+}
+
+footer img {
+    max-height: 80px;
+    max-width: 80px;
 }
 
 footer a {

@@ -139,7 +139,7 @@ class ArticlesController extends Controller
             $request->file('thumbnail')->storeAs('images/articles/'.$slug, $fileName, ['disk' => 'public_uploads']);
 
             // Delete old thumbnail
-            Storage::delete('images/articles/'.$slug.'/'.$article->thumbnail);
+            Storage::disk('public_uploads')->delete('images/articles/'.$slug.'/'.$article->thumbnail);
         }
 
         $data = $article;
@@ -173,7 +173,7 @@ class ArticlesController extends Controller
     public function destroy(Article $article)
     {
         // Delete thumbnail
-        Storage::deleteDirectory('images/articles/'.$article->slug.'/');
+        Storage::disk('public_uploads')->deleteDirectory('images/articles/'.$article->slug.'/');
 
         $this->unlinkTag($article);
 

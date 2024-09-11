@@ -11,7 +11,7 @@
         <br><br>
     </template>
     <h1>{{ article.title }}</h1>
-    <img :src="'/storage/images/articles/' + article.slug + '/' + article.thumbnail">
+    <img :src="'/images/articles/' + article.slug + '/' + article.thumbnail">
     <br>
     <h3 v-if="article.author">by {{ article.author.name }}</h3>
     <p>Published on: {{ article.timestamp }}</p>

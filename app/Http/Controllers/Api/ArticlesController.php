@@ -62,7 +62,7 @@ class ArticlesController extends Controller
             $fileName = time()
                         .'-'.$slug.'.'
                         .$request->thumbnail->extension();
-            $request->file('thumbnail')->storeAs('images/articles/'.$slug, $fileName, ['disk' => 'public']);
+            $request->file('thumbnail')->storeAs('images/articles/'.$slug, $fileName, ['disk' => 'public_uploads']);
             // $article = Article::create($request->validated());
             // $article = Article::create([
             //     'title' => $request->title,
@@ -136,7 +136,7 @@ class ArticlesController extends Controller
             $fileName = time()
                         .'-'.$slug.'.'
                         .$request->thumbnail->extension();
-            $request->file('thumbnail')->storeAs('images/articles/'.$slug, $fileName, ['disk' => 'public']);
+            $request->file('thumbnail')->storeAs('images/articles/'.$slug, $fileName, ['disk' => 'public_uploads']);
 
             // Delete old thumbnail
             Storage::delete('images/articles/'.$slug.'/'.$article->thumbnail);

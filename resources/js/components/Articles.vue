@@ -17,7 +17,7 @@
     <div class="cards-flex">
         <div v-for="article in articles" class="card card-img-bg-txt card-clickable">
             <router-link :to="{ name: 'article.view', params: { slug: article.slug } }">
-                <div class="img" :style="{ backgroundImage: `url(/storage/images/articles/${article.slug}/${article.thumbnail})` }"></div>
+                <div class="img" :style="{ backgroundImage: `url(images/articles/${article.slug}/${article.thumbnail})` }"></div>
                 <div class="text">
                     <h4>{{ article.title }}</h4>
                     <p>{{ article.preview }}</p>

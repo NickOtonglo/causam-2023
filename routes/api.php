@@ -15,7 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    return response([
+        'name' => $request->user()->name,
+        'email' => $request->user()->email,
+    ], 201);
 });
 
 // Route::apiResource('articles', \App\Http\Controllers\Api\ArticlesController::class);

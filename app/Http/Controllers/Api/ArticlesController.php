@@ -10,6 +10,7 @@ use App\Http\Resources\ArticlesResource;
 use App\Http\Resources\TagsResource;
 use App\Http\Requests\SaveArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -61,7 +62,7 @@ class ArticlesController extends Controller
             $fileName = time()
                         .'-'.$slug.'.'
                         .$request->thumbnail->extension();
-            $path = $request->file('thumbnail')->storeAs('public/images/articles/'.$slug, $fileName);
+            $request->file('thumbnail')->storeAs('images/articles/'.$slug, $fileName, ['disk' => 'public']);
             // $article = Article::create($request->validated());
             // $article = Article::create([
             //     'title' => $request->title,
@@ -135,10 +136,10 @@ class ArticlesController extends Controller
             $fileName = time()
                         .'-'.$slug.'.'
                         .$request->thumbnail->extension();
-            $path = $request->file('thumbnail')->storeAs('public/images/articles/'.$slug, $fileName);
+            $request->file('thumbnail')->storeAs('images/articles/'.$slug, $fileName, ['disk' => 'public']);
 
             // Delete old thumbnail
-            Storage::delete('public/images/articles/'.$slug.'/'.$article->thumbnail);
+            Storage::delete('images/articles/'.$slug.'/'.$article->thumbnail);
         }
 
         $data = $article;
@@ -172,7 +173,7 @@ class ArticlesController extends Controller
     public function destroy(Article $article)
     {
         // Delete thumbnail
-        Storage::deleteDirectory('public/images/articles/'.$article->slug.'/');
+        Storage::deleteDirectory('images/articles/'.$article->slug.'/');
 
         $this->unlinkTag($article);
 

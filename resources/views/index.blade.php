@@ -40,7 +40,7 @@
         <div class="cards-flex">
             <div class="card card-img-bg-txt card-clickable">
                 <a href="#">
-                    <div class="img" style="background-image: url('public/images/static/stationery-vector.jpg');"></div>
+                    <div class="img" style="background-image: url('images/static/stationery-vector.jpg');"></div>
                     <div class="text">
                         <h4>Brand identification</h4>
                         <p>We help the company to clearly define who they are. We help them answer the questions such as: What do they want to be known for? Do they have a USP they want to associate with?</p>
@@ -49,7 +49,7 @@
             </div>
             <div class="card card-img-bg-txt card-clickable">
                 <a href="#">
-                    <div class="img" style="background-image: url('public/images/static/awareness.png');"></div>
+                    <div class="img" style="background-image: url('images/static/awareness.png');"></div>
                     <div class="text">
                         <h4>Brand awareness and positioning</h4>
                         <p>Providing companies with the necessary branding elements to assist them in building their brand awareness and positioning themselves in an ever increasingly competitive world.</p>
@@ -58,7 +58,7 @@
             </div>
             <div class="card card-img-bg-txt card-clickable">
                 <a href="#">
-                    <div class="img" style="background-image: url('public/images/static/starbucks-brand-resonance-pyramid.jpg');"></div>
+                    <div class="img" style="background-image: url('images/static/starbucks-brand-resonance-pyramid.jpg');"></div>
                     <div class="text">
                         <h4>Brand resonance</h4>
                         <p>Continuous engagement and training our clients on how to handle their digital marketing campaigns. This enables the clients to maintain relevance and brand loyalty among their customers.</p>
@@ -67,7 +67,7 @@
             </div>
             <div class="card card-img-bg-txt card-clickable">
                 <a href="#">
-                    <div class="img" style="background-image: url('public/images/static/card_software.jpg');"></div>
+                    <div class="img" style="background-image: url('images/static/card_software.jpg');"></div>
                     <div class="text">
                         <h4>Software solutions</h4>
                         <p>Engineering solutions and tailoring deliverables to meet clients' specific needs. We are driven by the ambition to build well-developed, efficient and scalable applications for all our customers.</p>
@@ -76,7 +76,7 @@
             </div>
             <div class="card card-img-bg-txt card-clickable">
                 <a href="#">
-                    <div class="img" style="background-image: url('public/images/static/card_server.jpg');"></div>
+                    <div class="img" style="background-image: url('images/static/card_server.jpg');"></div>
                     <div class="text">
                         <h4>Domain, website and email migration</h4>
                         <p>Migrating your brand's domain, website and emails can be overwhelming and risky to your data and SEO configurations. Our dozens of clients entrusted us with this task and they couldn't have made a better choice!</p>
@@ -91,42 +91,42 @@
     <div class="container">
         <div class="portfolio-grp">
             <a href="https://edenhousefoundation.org/" target="_blank">
-                <div class="card card-img card-img-link" style="background-image: url('public/images/static/eden_house.jpg');">
+                <div class="card card-img card-img-link" style="background-image: url('images/static/eden_house.jpg');">
                     <div><p>Visit</p></div>
                 </div>
             </a>
             <a href="https://gmaurich.com" target="_blank">
-                <div class="card card-img card-img-link" style="background-image: url('public/images/static/gmaurich.jpg');">
+                <div class="card card-img card-img-link" style="background-image: url('images/static/gmaurich.jpg');">
                     <div><p>Visit</p></div>
                 </div>
             </a>
             <a href="#" target="_blank">
-                <div class="card card-img card-img-link" style="background-image: url('public/images/static/oasis.jpg');">
+                <div class="card card-img card-img-link" style="background-image: url('images/static/oasis.jpg');">
                     <div><p>Visit</p></div>
                 </div>
             </a>
             <a href="#" target="_blank">
-                <div class="card card-img card-img-link" style="background-image: url('public/images/static/reen_blog.jpg');">
+                <div class="card card-img card-img-link" style="background-image: url('images/static/reen_blog.jpg');">
                     <div><p>Visit</p></div>
                 </div>
             </a>
             <a href="https://laterrazzarestaurant.co.ke" target="_blank">
-                <div class="card card-img card-img-link" style="background-image: url('public/images/static/latarrazzarestaurant.png');">
+                <div class="card card-img card-img-link" style="background-image: url('images/static/latarrazzarestaurant.png');">
                     <div><p>Visit</p></div>
                 </div>
             </a>
             <a href="https://ofgen.africa" target="_blank">
-                <div class="card card-img card-img-link" style="background-image: url('public/images/static/ofgen.africa.png');">
+                <div class="card card-img card-img-link" style="background-image: url('images/static/ofgen.africa.png');">
                     <div><p>Visit</p></div>
                 </div>
             </a>
             <a href="https://ourstory.auntjohnnie.com" target="_blank">
-                <div class="card card-img card-img-link" style="background-image: url('public/images/static/ourstory.png');">
+                <div class="card card-img card-img-link" style="background-image: url('images/static/ourstory.png');">
                     <div><p>Visit</p></div>
                 </div>
             </a>
-            <a href="https://13.60.12.190/using-the-application-user-types" target="_blank">
-                <div class="card card-img card-img-link" style="background-image: url('public/images/static/bp-showcase.png');">
+            <a href="https://13.60.12.190/articles/using-the-application-user-types" target="_blank">
+                <div class="card card-img card-img-link" style="background-image: url('images/static/bp-showcase.png');">
                     <div><p>Coming soon</p></div>
                 </div>
             </a>
@@ -139,49 +139,49 @@
         <div class="clients-grp">
             <div class="card card-img-sm-txt card-clickable">
                 <a href="#">
-                    <img src="public/images/static/client_avdc.png" alt="">
+                    <img src="images/static/client_avdc.png" alt="">
                     <h4>AVDC</h4>
                 </a>
             </div>
             <div class="card card-img-sm-txt card-clickable">
                 <a href="#">
-                    <img src="public/images/static/client_fie.png" alt="">
+                    <img src="images/static/client_fie.png" alt="">
                     <h4>Fie-Consult</h4>
                 </a>
             </div>
             <div class="card card-img-sm-txt card-clickable">
                 <a href="#">
-                    <img src="public/images/static/client_gc_inv.png" alt="">
+                    <img src="images/static/client_gc_inv.png" alt="">
                     <h4>GC Investments</h4>
                 </a>
             </div>
             <div class="card card-img-sm-txt card-clickable">
                 <a href="#">
-                    <img src="public/images/static/client_gmaurich.png" alt="">
+                    <img src="images/static/client_gmaurich.png" alt="">
                     <h4>Gmaurich Insights</h4>
                 </a>
             </div>
             <div class="card card-img-sm-txt card-clickable">
                 <a href="#">
-                    <img src="public/images/static/client_grace.png" alt="">
+                    <img src="images/static/client_grace.png" alt="">
                     <h4>Grace Concern</h4>
                 </a>
             </div>
             <div class="card card-img-sm-txt card-clickable">
                 <a href="#">
-                    <img src="public/images/static/client_laterrazza.png" alt="">
+                    <img src="images/static/client_laterrazza.png" alt="">
                     <h4>La Terrazza</h4>
                 </a>
             </div>
             <div class="card card-img-sm-txt card-clickable">
                 <a href="#">
-                    <img src="public/images/static/client_ofgen.png" alt="">
+                    <img src="images/static/client_ofgen.png" alt="">
                     <h4>Ofgen</h4>
                 </a>
             </div>
             <div class="card card-img-sm-txt card-clickable">
                 <a href="#">
-                    <img src="public/images/static/client_tacc.png" alt="">
+                    <img src="images/static/client_tacc.png" alt="">
                     <h4>TACC</h4>
                 </a>
             </div>
@@ -199,7 +199,7 @@
         <h2 class="section-title">About us</h2>
         <div class="cards-flex">
             <div class="card card-img-circle-text">
-                <div class="img" style="background: url('public/images/static/david.jpg');"></div>
+                <div class="img" style="background: url('images/static/david.jpg');"></div>
                 <div class="text">
                     <h3>David K Muriuki</h3>
                     <h4>Managing Partner</h4>
@@ -207,7 +207,7 @@
                 </div>
             </div>
             <div class="card card-img-circle-text">
-                <div class="img" style="background: url('public/images/static/raphael.jpg');"></div>
+                <div class="img" style="background: url('images/static/raphael.jpg');"></div>
                 <div class="text">
                     <h3>Raphael M Gati</h3>
                     <h4>Managing Partner</h4>
@@ -215,7 +215,7 @@
                 </div>
             </div>
             <div class="card card-img-circle-text">
-                <div class="img" style="background: url('public/images/static/nick.jpg');"></div>
+                <div class="img" style="background: url('images/static/nick.jpg');"></div>
                 <div class="text">
                     <h3>Nicholas Otonglo</h3>
                     <h4>Software Developer</h4>
@@ -223,7 +223,7 @@
                 </div>
             </div>
             <div class="card card-img-circle-text">
-                <div class="img" style="background: url('public/images/static/brian.jpg');"></div>
+                <div class="img" style="background: url('images/static/brian.jpg');"></div>
                 <div class="text">
                     <h3>Brian Ogenge</h3>
                     <h4>Software Developer</h4>
@@ -283,9 +283,9 @@
 <footer>
     <div class="container">
         <div>
-            <img src="public/images/static/logo.png" alt="">
+            <img src="images/static/logo.png" alt="">
             <h1>causam</h1>
-            <p>Copyright &copy; 2023</p>
+            <p>Copyright &copy; {{ now()->year }}</p>
         </div>
         <nav>
             <ul>

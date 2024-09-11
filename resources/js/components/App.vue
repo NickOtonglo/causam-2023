@@ -40,21 +40,10 @@ export default {
         }
     },
     created() {
-        // axios.interceptors.response.use(
-        //     response => {
-        //         return response
-        //     },
-        //     error => {
-        //         if (error.response.status === 401 || error.response.status === 419) {
-        //             this.logout()
-        //         }
-
-        //         return Promise.reject(error)
-        //     }
-        // )
+        
     },
     mounted() {
-        // console.log('isLoggedIn:' + this.isLoggedIn)
+        
     },
     computed: {
         isLoggedIn() {

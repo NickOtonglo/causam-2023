@@ -22,7 +22,7 @@ class MailController extends Controller
 
         Mail::create($request->all());
 
-        event(new ContactInfoSubmitted($mail));
+        // event(new ContactInfoSubmitted($mail));
 
         session()->flash('success', 'Your message was received. A member of our team will contact you soon.');
         return view('index');
